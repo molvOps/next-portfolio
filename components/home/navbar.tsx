@@ -27,12 +27,12 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className="flex justify-between items-center mr-5 max-md:mr-0 relative">
+    <nav className="flex justify-between  items-center mr-5 max-md:mr-0 relative mt-4">
       <a href="#about">
         <Image width={150} height={150} src="/logo.png" alt="logo" className="max-md:w-[100px] max-[950px]:hidden" />
       </a>
 
-      <ul className={`hidden md:flex mt-4 list-none gap-12 text-center`}>
+      <ul className={`hidden md:flex list-none gap-12 text-center`}>
         <li><a className="hover:text-white" href="#experience">Experience</a></li>
         <li><a className="hover:text-white" href="#projectsid">Projects</a></li>
         <li><a className="hover:text-white" href="#skills">Skills</a></li>
