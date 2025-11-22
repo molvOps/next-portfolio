@@ -5,18 +5,18 @@ function Intro() {
     <div className="flex flex-col items-center justify-between mx-[30px] my-10 md:flex-row md:my-[40px]">
       
       <div className="w-full leading-[1.1] md:text-left md:w-auto">
-        <h1 className="text-[2.5rem] md:text-[60px]  md:text-white  md:leading-normal">
+        <h1 className="md:text-[60px] max-md:text-[2.5rem]  md:text-white  md:leading-normal">
           Hi, I am{" "}
-          <span className="text-[3rem] md:text-[60px]  text-yellow-500">
+          <span className="max-md:text-[3rem] md:text-[60px]  text-yellow-500">
             molvOps
           </span>
         </h1>
 
-        <p className="text-base leading-[1.1] text-[2rem] md:text-[40px] mt-[30px] md:mt-[15px] font-bold md:font-extrabold text-white">
+        <p className="text-base leading-[1.1] max-md:text-[1.3rem] md:text-[40px] mt-[30px] md:mt-[15px] font-bold md:font-extrabold text-white">
           An Innovative Software Engineer
         </p>
 
-        <p className="text-[20px] mt-3 font-extralight md:font-normal text-white">
+        <p className="text-[18px] mt-3 font-extralight md:font-normal text-white">
           Focused on clean code and advanced solutions, constantly exploring new
           technologies to build next-gen applications.
         </p>
