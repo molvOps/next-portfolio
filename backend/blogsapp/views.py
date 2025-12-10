@@ -8,3 +8,7 @@ from .serializers import BlogSerializer
 class BlogViewSet(viewsets.ModelViewSet):
     queryset = Blog.objects.all().order_by('-created_at')  
     serializer_class = BlogSerializer
+
+
+def blogs_page(request):
+    return render(request, "blogs/blogs_list.html")

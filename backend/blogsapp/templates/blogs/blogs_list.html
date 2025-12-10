@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Blogs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            max-width: 900px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        pre {
+            background: #1e1e1e;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .tags {
+            margin-top: 20px;
+        }
+        .tags span {
+            margin-right: 10px;
+            color: blue;
+        }
+        hr {
+            margin: 40px 0;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Blogs</h1>
+    <div id="blogs-container"></div>
+
+    <script>
+        const container = document.getElementById("blogs-container");
+
+        fetch("/blogs/")
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(blog => renderBlog(blog));
+            })
+            .catch(err => {
+                container.innerHTML = "<p>Error fetching blogs. Check console.</p>";
+                console.error(err);
+            });
+
+        function renderBlog(blog) {
+            const blogDiv = document.createElement("div");
+
+            // Blog title
+            const title = document.createElement("h2");
+            title.textContent = blog.title;
+            blogDiv.appendChild(title);
+
+            // Render blocks
+            blog.blocks.forEach(block => {
+                if (block.type === "para") {
+                    const p = document.createElement("p");
+                    p.textContent = block.content;
+                    blogDiv.appendChild(p);
+                }
+                if (block.type === "code") {
+                    const pre = document.createElement("pre");
+                    const code = document.createElement("code");
+                    code.textContent = block.content;
+                    pre.appendChild(code);
+                    blogDiv.appendChild(pre);
+                }
+                if (block.type === "image") {
+                    const img = document.createElement("img");
+                    img.src = block.content;
+                    blogDiv.appendChild(img);
+                }
+            });
+
+            // Render tags
+            if (blog.tags.length > 0) {
+                const tagBox = document.createElement("div");
+                tagBox.classList.add("tags");
+                blog.tags.forEach(tag => {
+                    const span = document.createElement("span");
+                    span.textContent = "#" + tag;
+                    tagBox.appendChild(span);
+                });
+                blogDiv.appendChild(tagBox);
+            }
+
+            // Divider between blogs
+            const hr = document.createElement("hr");
+            blogDiv.appendChild(hr);
+
+            container.appendChild(blogDiv);
+        }
+    </script>
+</body>
+</html>
